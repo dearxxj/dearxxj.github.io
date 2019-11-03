@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Algorithm on Fan&#39;s Blog</title>
+    <link>https://dearxxj.github.io/tags/algorithm/</link>
+    <description>Recent content in Algorithm on Fan&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 28 Dec 2018 20:42:32 -0500</lastBuildDate>
+    
+	<atom:link href="https://dearxxj.github.io/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Exact string matching algorithms: Boyer-Moore and KMP</title>
+      <link>https://dearxxj.github.io/post/4/</link>
+      <pubDate>Fri, 28 Dec 2018 20:42:32 -0500</pubDate>
+      
+      <guid>https://dearxxj.github.io/post/4/</guid>
+      <description>String matching algorithms are used in lots of scenarios such as searching words in a text file, or locating specific sequences in a genome. I&amp;rsquo;ve heard of KMP algorithm long time ago, but don&amp;rsquo;t have a chance to implement it by myself (just lazy). It seems that KMP is not widely used in genomics field, but instead another algorithm, Boyer-Moore, is taught more often in computational genomics classes. I recently find a great online tutorial on computational genomics by Ben Langmead @JHU (link).</description>
+    </item>
+    
+  </channel>
+</rss>

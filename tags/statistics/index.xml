@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Statistics on Fan&#39;s Blog</title>
+    <link>https://dearxxj.github.io/tags/statistics/</link>
+    <description>Recent content in Statistics on Fan&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 24 Nov 2018 22:26:32 -0500</lastBuildDate>
+    
+	<atom:link href="https://dearxxj.github.io/tags/statistics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Similarity measurement of two sets of TADs</title>
+      <link>https://dearxxj.github.io/post/3/</link>
+      <pubDate>Sat, 24 Nov 2018 22:26:32 -0500</pubDate>
+      
+      <guid>https://dearxxj.github.io/post/3/</guid>
+      <description>Months ago I had this question of comparing TADs from two Hi-C experiments in my research. TAD is short for topologically associated domains, discovered by Dixon et al [1] in 2012, which are regions in the genome that interacts more frequenctly with regions in the domain than outside. The goal of comparing TADs from two Hi-C expriments is to search for differentially interacting regions under two conditions to tease out regions that react to the conditions.</description>
+    </item>
+    
+  </channel>
+</rss>
