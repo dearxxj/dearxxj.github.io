@@ -388,7 +388,7 @@ if (!doNotTrack) {
 <span class="ln">4</span><span class="c1"># 2. link to the HTSlib library and other necessary libraries</span>
 <span class="ln">5</span>gcc -O2 -Wall main.c htslib-build/lib/libhts.a -lz -lbz2 -llzma -lcurl -o bam2pairs</code></pre></div>
 <br>
-[1]. (Update 191103). GNU sort actually can be pretty fast if used properly (<a href="https://unix.stackexchange.com/questions/120096/how-to-sort-big-files">ref</a>) since it is already optimized for large files. To do this, one needs to set the &ndash;parallel parameter to the number of cores that sort will use. Algorithmly, GNU sort implements external sorting which first split the input into smaller portions and fit that in the memory, then perform sorting on each portion and lastly merge the results.
+[1]. (<strong>Update 191103</strong>). GNU sort actually can be pretty fast if used properly (<a href="https://unix.stackexchange.com/questions/120096/how-to-sort-big-files">ref</a>) since it is already optimized for large files. To do this, one needs to set the &ndash;parallel parameter to the number of cores that sort will use. Algorithmly, GNU sort implements external sorting which first split the input into smaller portions and fit that in the memory, then perform sorting on each portion and lastly merge the results.
 <br></p>
 
 
@@ -471,6 +471,8 @@ if (!doNotTrack) {
                   <ul>
                 
                 
+                    <li><a href="/post/6/">Demystify Hi-C Data Normalization</a></li>
+                
                     <li><a href="/post/4/">Exact string matching algorithms: Boyer-Moore and KMP</a></li>
                 
                     <li><a href="/post/2/">How does number of threads affect mapping time in BWA MEM</a></li>
@@ -488,6 +490,10 @@ if (!doNotTrack) {
               <a href="https://dearxxj.github.io/post/4/" data-toggle="tooltip" data-placement="top" title="Exact string matching algorithms: Boyer-Moore and KMP">&larr; Previous Post</a>
             </li>
           
+          
+            <li class="next">
+              <a href="https://dearxxj.github.io/post/6/" data-toggle="tooltip" data-placement="top" title="Demystify Hi-C Data Normalization">Next Post &rarr;</a>
+            </li>
           
         </ul>
       

@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Fan&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 07 Apr 2019 20:36:43 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 03 Nov 2019 20:59:30 -0600</lastBuildDate>
     
 	<atom:link href="https://dearxxj.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Demystify Hi-C Data Normalization</title>
+      <link>https://dearxxj.github.io/post/6/</link>
+      <pubDate>Sun, 03 Nov 2019 20:59:30 -0600</pubDate>
+      
+      <guid>https://dearxxj.github.io/post/6/</guid>
+      <description>Hi-C is a sequencing-based method for profiling the genome-wide chromatin contacts. It has been widely used in studying various biological questions such as gene regulation, chromatin structures, genome assembly, etc. The Hi-C experiments involves a series of biochemistical reactions that may introduce noises to the output. Subsequent data analysis such as read mapping also give rise to noises that affect the interpretation of the final output: a contact matrix, where each element in the matrix denotes the contact strength between any two regions of genome.</description>
+    </item>
     
     <item>
       <title>Learning HTSlib (1)</title>

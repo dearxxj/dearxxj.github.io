@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Fan&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 07 Apr 2019 20:36:43 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 03 Nov 2019 20:59:30 -0600</lastBuildDate>
     
 	<atom:link href="https://dearxxj.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,18 @@
     <item>
       <title>Bioinfo</title>
       <link>https://dearxxj.github.io/tags/bioinfo/</link>
-      <pubDate>Sun, 07 Apr 2019 20:36:43 -0400</pubDate>
+      <pubDate>Sun, 03 Nov 2019 20:59:30 -0600</pubDate>
       
       <guid>https://dearxxj.github.io/tags/bioinfo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hi-C</title>
+      <link>https://dearxxj.github.io/tags/hi-c/</link>
+      <pubDate>Sun, 03 Nov 2019 20:59:30 -0600</pubDate>
+      
+      <guid>https://dearxxj.github.io/tags/hi-c/</guid>
       <description></description>
     </item>
     
@@ -44,15 +53,6 @@
       <pubDate>Fri, 28 Dec 2018 20:42:32 -0500</pubDate>
       
       <guid>https://dearxxj.github.io/tags/algorithm/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Hi-C</title>
-      <link>https://dearxxj.github.io/tags/hi-c/</link>
-      <pubDate>Sat, 24 Nov 2018 22:26:32 -0500</pubDate>
-      
-      <guid>https://dearxxj.github.io/tags/hi-c/</guid>
       <description></description>
     </item>
     
