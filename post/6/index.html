@@ -325,11 +325,11 @@ if (!doNotTrack) {
 
 <p>The idea behind above algorithm is that we start by setting the biases to the sums of each row of the matrix, and dividing each matrix element by its row- and column-wise biases. The two steps are repeated until convergence criteria are met. We can use the variance of the biases (<em>self.bias</em>) to monitor the convergence of the balancing process (Figure shown below).</p>
 
-<p><img src="/img/6.Fig1.png" alt="Figure 1" /></p>
+<p><img src="/img/6.Fig1.1.png" alt="Figure 1" /></p>
 
 <p>The raw contact matrix, matrices normalized by SP method and VC method are plotted as heatmaps as below. We can see that regions away from diagonal in the normalized matrices are cleaner than the raw matrix, but we can barely see the difference between SP and VC method. In practice, we pre-filter rows with very small values before normalization. The above script can be easily extended to achieve this. What we need to add is to set rows whose sums are smaller than certain threshold to be all zeros.</p>
 
-<p><img src="/img/6.Fig2.png" alt="Figure 2" /></p>
+<p><img src="/img/6.Fig2.1.png" alt="Figure 2" /></p>
 
 <p>However, we can quantify the difference of SP and VC normalized methods by examining the correlation of contacts separated by the same distances. To do this, we extract and calculate the correlation of the d-th diagonal of the two matrices, where d is the distance (at bins) of two genomic regions. From the figure below, while all three methods resemble raw matrix at long distance (&gt;10 Mb), SP is slightly more similar to raw matrix. Pairwise comparison of three methods shows that SP and VC are highly similar given that they&rsquo;re only differed by number of iterations. KR resembles SP more than VC, but the difference is neglectable. [<em>Note: KR matrix is obtained from the .hic file with straw API</em>].</p>
 
