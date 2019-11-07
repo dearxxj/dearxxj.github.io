@@ -59,7 +59,7 @@
   "headline": "Demystify Hi-C Data Normalization",
   "description" : "Hi-C is a sequencing-based method for profiling the genome-wide chromatin contacts. It has been widely used in studying various biological questions such as gene regulation, chromatin structures, genome assembly, etc. The Hi-C experiments involves a series of biochemistical reactions that may introduce noises to the output. Subsequent data analysis such as read mapping also give rise to noises that affect the interpretation of the final output: a contact matrix, where each element in the matrix denotes the contact strength between any two regions of genome.",
   "inLanguage" : "en",
-  "wordCount":  1211 ,
+  "wordCount":  1335 ,
   "datePublished" : "2019-11-03T20:59:30",
   "dateModified" : "2019-11-03T20:59:30",
   "image" : "https:\/\/dearxxj.github.io\/img\/blog-log.png",
@@ -241,10 +241,10 @@ if (!doNotTrack) {
   <i class="fas fa-calendar"></i>&nbsp;Posted on November 3, 2019
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;6&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;7&nbsp;minutes
   
   
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;1211&nbsp;words
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;1335&nbsp;words
   
   
     
@@ -286,36 +286,42 @@ if (!doNotTrack) {
 <span class="ln"> 3</span>        <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="bp">None</span>
 <span class="ln"> 4</span>        <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">=</span> <span class="n">matrix</span>
 <span class="ln"> 5</span>        <span class="bp">self</span><span class="o">.</span><span class="n">norm_matrix</span> <span class="o">=</span> <span class="bp">None</span>
-<span class="ln"> 6</span>
-<span class="ln"> 7</span>    <span class="k">def</span> <span class="nf">iterative_correction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
-<span class="ln"> 8</span>        <span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>  <span class="c1">## use float to avoid int overflow</span>
-<span class="ln"> 9</span>        <span class="c1">## pre-filter rows with small sums to avoid spurious signals</span>
-<span class="ln">10</span>        <span class="c1">## mat[np.sum(mat, axis=1) &lt; threshold, :] = 0</span>
-<span class="ln">11</span>
-<span class="ln">12</span>        <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="ln">13</span>        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
-<span class="ln">14</span>        <span class="n">mat_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>   <span class="c1"># force the sum of matrix to stay the same, otherwise ICE may not converge as fast</span>
-<span class="ln">15</span>
-<span class="ln">16</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">):</span>
-<span class="ln">17</span>            <span class="n">bias</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="ln">18</span>            <span class="n">bias_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bias</span><span class="p">[</span><span class="n">bias</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span>
-<span class="ln">19</span>            <span class="n">bias_var</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">bias</span><span class="p">[</span><span class="n">bias</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span>
-<span class="ln">20</span>            <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;Variance: {bias_var}&#34;</span><span class="p">)</span>
-<span class="ln">21</span>            <span class="n">bias</span> <span class="o">=</span> <span class="n">bias</span> <span class="o">/</span> <span class="n">bias_mean</span>
-<span class="ln">22</span>            <span class="n">bias</span><span class="p">[</span><span class="n">bias</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># to avoid dividing by 0</span>
-<span class="ln">23</span>
-<span class="ln">24</span>            <span class="n">mat</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">mat</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">bias</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">*</span><span class="n">bias</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
-<span class="ln">25</span>            <span class="n">new_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
-<span class="ln">26</span>            <span class="n">mat</span> <span class="o">=</span> <span class="n">mat</span> <span class="o">*</span> <span class="p">(</span><span class="n">mat_sum</span> <span class="o">/</span> <span class="n">new_sum</span><span class="p">)</span>
-<span class="ln">27</span>
-<span class="ln">28</span>            <span class="c1"># update total bias</span>
-<span class="ln">29</span>            <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">*</span> <span class="n">bias</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">new_sum</span> <span class="o">/</span> <span class="n">mat_sum</span><span class="p">)</span>
-<span class="ln">30</span>        
-<span class="ln">31</span>        <span class="bp">self</span><span class="o">.</span><span class="n">norm_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-<span class="ln">32</span>        <span class="bp">self</span><span class="o">.</span><span class="n">norm_matrix</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm_matrix</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
-<span class="ln">33</span>        
-<span class="ln">34</span>    <span class="k">def</span> <span class="nf">vanilla_coverage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="ln">35</span>        <span class="bp">self</span><span class="o">.</span><span class="n">iterative_correction</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code></pre></div>
+<span class="ln"> 6</span>        <span class="bp">self</span><span class="o">.</span><span class="n">_bias_var</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="ln"> 7</span>
+<span class="ln"> 8</span>    <span class="k">def</span> <span class="nf">iterative_correction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+<span class="ln"> 9</span>        <span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>  <span class="c1">## use float to avoid int overflow</span>
+<span class="ln">10</span>        <span class="c1"># remove low count rows for normalization</span>
+<span class="ln">11</span>        <span class="n">row_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="ln">12</span>        <span class="n">low_count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">row_sum</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">)</span>  <span class="c1"># 0.15 gives best correlation between KR/SP/VC</span>
+<span class="ln">13</span>        <span class="n">mask_row</span> <span class="o">=</span> <span class="n">row_sum</span> <span class="o">&lt;</span> <span class="n">low_count</span>
+<span class="ln">14</span>        <span class="n">mat</span><span class="p">[</span><span class="n">mask_row</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="ln">15</span>        <span class="n">mat</span><span class="p">[:,</span> <span class="n">mask_row</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="ln">16</span>        
+<span class="ln">17</span>        <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="ln">18</span>        <span class="bp">self</span><span class="o">.</span><span class="n">_bias_var</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="ln">19</span>        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+<span class="ln">20</span>        <span class="n">mat_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>   <span class="c1"># force the sum of matrix to stay the same, otherwise ICE may not converge as fast</span>
+<span class="ln">21</span>
+<span class="ln">22</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">):</span>
+<span class="ln">23</span>            <span class="n">bias</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="ln">24</span>            <span class="n">bias_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bias</span><span class="p">[</span><span class="n">bias</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span>
+<span class="ln">25</span>            <span class="n">bias_var</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">bias</span><span class="p">[</span><span class="n">bias</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span>
+<span class="ln">26</span>            <span class="bp">self</span><span class="o">.</span><span class="n">_bias_var</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bias_var</span><span class="p">)</span>
+<span class="ln">27</span>            <span class="n">bias</span> <span class="o">=</span> <span class="n">bias</span> <span class="o">/</span> <span class="n">bias_mean</span>
+<span class="ln">28</span>            <span class="n">bias</span><span class="p">[</span><span class="n">bias</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="ln">29</span>
+<span class="ln">30</span>            <span class="n">mat</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">mat</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">bias</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">*</span><span class="n">bias</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
+<span class="ln">31</span>            <span class="n">new_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+<span class="ln">32</span>            <span class="n">mat</span> <span class="o">=</span> <span class="n">mat</span> <span class="o">*</span> <span class="p">(</span><span class="n">mat_sum</span> <span class="o">/</span> <span class="n">new_sum</span><span class="p">)</span>
+<span class="ln">33</span>
+<span class="ln">34</span>            <span class="c1"># update total bias</span>
+<span class="ln">35</span>            <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">*</span> <span class="n">bias</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">new_sum</span> <span class="o">/</span> <span class="n">mat_sum</span><span class="p">)</span>
+<span class="ln">36</span>        
+<span class="ln">37</span>        <span class="bp">self</span><span class="o">.</span><span class="n">norm_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="ln">38</span>        <span class="bp">self</span><span class="o">.</span><span class="n">norm_matrix</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm_matrix</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
+<span class="ln">39</span>        
+<span class="ln">40</span>    <span class="k">def</span> <span class="nf">vanilla_coverage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="ln">41</span>        <span class="bp">self</span><span class="o">.</span><span class="n">iterative_correction</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code></pre></div>
 
 <p>The idea behind above algorithm is that we start by setting the biases to the sums of each row of the matrix, and dividing each matrix element by its row- and column-wise biases. The two steps are repeated until convergence criteria are met. We can use the variance of the biases (<em>self.bias</em>) to monitor the convergence of the balancing process (Figure shown below).</p>
 
@@ -325,17 +331,24 @@ if (!doNotTrack) {
 
 <p><img src="/img/6.Fig2.png" alt="Figure 2" /></p>
 
-<p>However, we can quantify the difference of SP and VC normalized methods by examining the correlation of contacts separated by the same distances. To do this, we extract and calculate the correlation of the d-th diagonal of the two matrices, where d is the distance (at bins) of two genomic regions. From the figure below, we can see that KR preserve the ranking of raw data better than SP and VC. SP and VC are more closely related to each other than to KR. [<em>Note: KR matrix is obtained from the .hic file with straw API</em>].</p>
+<p>However, we can quantify the difference of SP and VC normalized methods by examining the correlation of contacts separated by the same distances. To do this, we extract and calculate the correlation of the d-th diagonal of the two matrices, where d is the distance (at bins) of two genomic regions. From the figure below, while all three methods resemble raw matrix at long distance (&gt;10 Mb), SP is slightly more similar to raw matrix. Pairwise comparison of three methods shows that SP and VC are highly similar given that they&rsquo;re only differed by number of iterations. KR resembles SP more than VC, but the difference is neglectable. [<em>Note: KR matrix is obtained from the .hic file with straw API</em>].</p>
 
-<p><img src="/img/6.Fig3.png" alt="Figure 3" /></p>
+<p><img src="/img/6.Fig3.1.png" alt="Figure" /></p>
 
-<p>In practise, HiC normalization is done by intra-chromosome only, inter-chromosome only, or both. For intra-chromosome only, KR or ICE was done on each chromosome separately. For inter-chromosome only, the genome-wide matrix is obtained and from which the intra-chr contacts are removed. When inter-chromosome interactions are included, normalization at high resolution requires a large amount of memory. So the normalizatioln is often done on the genome-wide matrix at 25kb or 50kb resolution.</p>
+<p>In practise, HiC normalization is done by intra-chromosome only, inter-chromosome only, or both. For intra-chromosome only, KR or ICE was done on each chromosome separately. For inter-chromosome only, the genome-wide matrix is obtained and from which the intra-chr contacts are removed. When inter-chromosome interactions are included, normalization at high resolution requires a large amount of memory. So the normalizatioln is often done on the genome-wide matrix at 25kb or 50kb resolution, as in Rao et al. A natural question is whether removing inter-chromosome contacts would have an impact on the normalization of intra-chromosome contacts? To answer this question, I performed SP normalization on All contacts vs only on intra-chromosome contacts. Again, <strong>the difference between normalized by all contacts and by only intra-chromosome contacts are really small</strong>. Juicertools and Cooler both use all contacts for normalization by default.</p>
+
+<p><img src="/img/6.Fig4.1.png" alt="Figure" /></p>
 
 <h3 id="conclusion">Conclusion</h3>
 
 <p><strong>So which normalization method should I use for my data? The answer might be that it really doesn&rsquo;t matter</strong>. As shown by Rao et al and our analysis, there are high correlations observed between VC, ICE(SP), KR and a couple of other matrix balancing method. Rao et al further point out that the loop calls are not affected by different normalization method in their study. They even show that loops were nearly the same when peaks were called on raw data, which makes me question whether we need matrix normalization or not. I would still recommend normalization as part of the best pratise. Choosing KR or ICE is largely depending on the pipeline you use(Juicertools or Cooler), but if you have a relatively low sequencing depth, I would recommend ICE as it always converges.</p>
 
 <p><br></p>
+
+<h4 id="code-availability">Code availability</h4>
+
+<p>All codes used for this post can be found: <a href="https://github.com/dearxxj/genomics_tools/blob/master/HiC_Normalization/HiC-normalization.ipynb">https://github.com/dearxxj/genomics_tools/blob/master/HiC_Normalization/HiC-normalization.ipynb</a>
+<br></p>
 
 <p>Reference:<br>
 <strong>[1]</strong>. Imakaev et al. Iterative correction of hi-c data reveals hallmarks of chromosome organization. Nature Method. 2012. <br>
