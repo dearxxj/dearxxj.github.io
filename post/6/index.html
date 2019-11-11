@@ -59,7 +59,7 @@
   "headline": "Demystify Hi-C Data Normalization",
   "description" : "Hi-C is a sequencing-based method for profiling the genome-wide chromatin contacts. It has been widely used in studying various biological questions such as gene regulation, chromatin structures, genome assembly, etc. The Hi-C experiments involves a series of biochemistical reactions that may introduce noises to the output. Subsequent data analysis such as read mapping also give rise to noises that affect the interpretation of the final output: a contact matrix, where each element in the matrix denotes the contact strength between any two regions of genome.",
   "inLanguage" : "en",
-  "wordCount":  1335 ,
+  "wordCount":  1371 ,
   "datePublished" : "2019-11-03T20:59:30",
   "dateModified" : "2019-11-03T20:59:30",
   "image" : "https:\/\/dearxxj.github.io\/img\/blog-log.png",
@@ -244,7 +244,7 @@ if (!doNotTrack) {
     &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;7&nbsp;minutes
   
   
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;1335&nbsp;words
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;1371&nbsp;words
   
   
     
@@ -341,7 +341,7 @@ if (!doNotTrack) {
 
 <h3 id="conclusion">Conclusion</h3>
 
-<p><strong>So which normalization method should I use for my data? The answer might be that it really doesn&rsquo;t matter</strong>. As shown by Rao et al and our analysis, there are high correlations observed between VC, ICE(SP), KR and a couple of other matrix balancing method. Rao et al further point out that the loop calls are not affected by different normalization method in their study. They even show that loops were nearly the same when peaks were called on raw data, which makes me question whether we need matrix normalization or not. I would still recommend normalization as part of the best pratise. Choosing KR or ICE is largely depending on the pipeline you use(Juicertools or Cooler), but if you have a relatively low sequencing depth, I would recommend ICE as it always converges.</p>
+<p><strong>So which normalization method should I use for my data? The answer might be that it really doesn&rsquo;t matter</strong>. As shown by Rao et al and our analysis, there are high correlations observed between VC, ICE(SP), KR and a couple of other matrix balancing method. Rao et al further point out that the loop calls are not affected by different normalization method in their study. They even show that loops were nearly the same when peaks were called on raw data, which makes me question whether we need matrix normalization or not. Although Rao and others did mention that VC tends to over-correct the contact map and proposed VCSQ to supplement VC, I have not seen anyone show clear evidences that KR/ICE are superior to VC/VCSQ. In conclusion, I would still recommend normalization as part of the best pratise. Choosing KR or ICE is largely depending on the pipeline you use(Juicertools or Cooler), but if you have a relatively low sequencing depth, I would recommend ICE as it always converges.</p>
 
 <p><br></p>
 
