@@ -59,7 +59,7 @@
   "headline": "Demystify Hi-C Data Normalization",
   "description" : "Hi-C is a sequencing-based method for profiling the genome-wide chromatin contacts. It has been widely used in studying various biological questions such as gene regulation, chromatin structures, genome assembly, etc. The Hi-C experiments involves a series of biochemistical reactions that may introduce noises to the output. Subsequent data analysis such as read mapping also give rise to noises that affect the interpretation of the final output: a contact matrix, where each element in the matrix denotes the contact strength between any two regions of genome.",
   "inLanguage" : "en",
-  "wordCount":  1396 ,
+  "wordCount":  1398 ,
   "datePublished" : "2019-11-03T20:59:30",
   "dateModified" : "2019-11-03T20:59:30",
   "image" : "https:\/\/dearxxj.github.io\/img\/blog-log.png",
@@ -244,7 +244,7 @@ if (!doNotTrack) {
     &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;7&nbsp;minutes
   
   
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;1396&nbsp;words
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;1398&nbsp;words
   
   
     
@@ -327,7 +327,7 @@ if (!doNotTrack) {
 
 <p><img src="/img/6.Fig1.1.png" alt="Figure 1" /></p>
 
-<p>The raw contact matrix, matrices normalized by SP method and VC method are plotted as heatmaps as below. We can see that regions away from diagonal in the normalized matrices are cleaner than the raw matrix, but we can barely see the difference between SP and VC method. In practice, we pre-filter rows with very small values before normalization. The above script filters out rows whose sums fall below 15% of all row sums by setting elements of these rows to be zero.</p>
+<p>The raw contact matrix, matrices normalized by SP method and VC method are plotted as heatmaps as below. We can see that regions away from diagonal in the normalized matrices are cleaner than the raw matrix, but we can barely see the difference between SP and VC method. In practice, we pre-filter rows with very small values before normalization. The above script filters out rows whose sums fall below the 15 quantile of all row sums by setting elements of these rows to be zero.</p>
 
 <p><img src="/img/6.Fig2.1.png" alt="Figure 2" /></p>
 
